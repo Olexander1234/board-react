@@ -3,12 +3,16 @@ import { EventBoar } from "./event/EventBoar";
 import '../index.css';
 import boars from './boar.json';
 import { GlobalStyle} from './event/MyEvent.style'
+import { Counter } from "./Counter/Counter";
 export const App = () => {
   return (
     <>
 <GlobalStyle/>
-    <EventTitle title={'24th Core Worlds Coalition Conference'}/>
-<EventBoar boars={boars}/>
+    {/* <EventTitle title={'24th Core Worlds Coalition Conference'}/>
+<EventBoar boars={boars}/> */}
+<Counter/>
+
+
     </>
    
   );
