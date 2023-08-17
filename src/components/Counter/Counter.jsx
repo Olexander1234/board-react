@@ -3,13 +3,13 @@ import './Counter.css'
 
 export class Counter extends React.Component {
 
-constructor(){
-    super()
-    this.state =  {}
-    this.value = 0
+// static propType ={
+// //  initialValue : 0;
+
+// // }
+state = {
+value: 10,
 }
-
-
 
 
 
@@ -31,7 +31,7 @@ handlerIncrement = (e) => {
 
 render() {
     return <div className="Counter__controls">
-    <span className="Counter__value">0</span>
+    <span className="Counter__value">{this.state.value}</span>
   <button type="button" onClick={this.handlerDecrement}>
     Збільшити на 1
   </button>
