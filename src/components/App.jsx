@@ -5,6 +5,9 @@ import boars from './boar.json';
 import { GlobalStyle} from './event/MyEvent.style'
 import { Counter } from "./Counter/Counter";
 import { Dropdown } from "./Dropdown/Dropdown";
+import { ColorChange } from "./ColorChanger/ColorChanger";
+
+
 export const App = () => {
   return (
     <>
@@ -12,8 +15,8 @@ export const App = () => {
     {/* <EventTitle title={'24th Core Worlds Coalition Conference'}/>
 <EventBoar boars={boars}/> */}
 {/* <Counter initialValue={5}/> */}
-<Dropdown/>
-
+{/* <Dropdown/> */}
+<ColorChange/>
     </>
    
   );
