@@ -1,14 +1,20 @@
 import React from "react";
 import './Counter.css'
-
+import { Buttons } from "./Buttons";
+import {CounterValue} from './CaunterValue'
 export class Counter extends React.Component {
 
 // static propType ={
 // //  initialValue : 0;
 
 // // }
+
+
+static defaultProps = {
+  initiallValue: 0
+}
 state = {
-value: 10,
+value: this.props.initiallValue
 }
 
 
@@ -18,7 +24,11 @@ value: 10,
 
 
 handlerDecrement = (e)=>{
-console.log('збільшуємо значення')
+  this.setState((prevState)=>{
+    return {
+      value: prevState.value + 1
+    }
+  })
 
 const targetEl = e.target;
 
@@ -26,18 +36,21 @@ const targetEl = e.target;
 }
 
 handlerIncrement = (e) => {
-    console.log("Зменшуємо на 1")
+
+   
+    this.setState((prevState)=>{
+      return {
+        value: prevState.value - 1
+      }
+    })
 }
 
 render() {
+  const {handlerDecrement, handlerIncrement} = this
     return <div className="Counter__controls">
-    <span className="Counter__value">{this.state.value}</span>
-  <button type="button" onClick={this.handlerDecrement}>
-    Збільшити на 1
-  </button>
-  <button type="button" onClick={this.handlerIncrement}>
-    Зменшити на 1
-  </button>
+   <CounterValue value={this.state.value}/>
+  <Buttons onDecrement={handlerDecrement}
+  onIncrement ={handlerIncrement}/>
 </div>
 }
 
