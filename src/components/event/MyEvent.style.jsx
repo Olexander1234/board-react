@@ -35,14 +35,14 @@ margin: calc(4px + 50px) 0 calc(4px + 50px) 0;
 
 `
 
-// export const EventList = styled.ul`
+export const EventList = styled.ul`
 
-// display: flex;
-// flex-wrap: wrap;
-// gap: 15px;
+display: flex;
+flex-wrap: wrap;
+gap: 15px;
 
 
-// `
+`
 
 export const GlobalStyle = createGlobalStyle`
 body {
