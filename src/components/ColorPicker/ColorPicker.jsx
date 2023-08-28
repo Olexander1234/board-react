@@ -7,13 +7,28 @@ state = {
 
     currentOptionIdx: 0
 }
+
+
+
+handleActive = (idx)=>{
+
+    this.setState({
+        currentOptionIdx: idx,
+
+    })
+}
         render(){
             return (
                 <Container >
                     <Title >Color Picker</Title>
                     <div>
                         {this.props.options.map((option, idx) => {
-                            return <Option   key = {option.label} backgroundColor = {option.color}>{option.label}</Option>
+                            return <Option currentIdx={this.state.currentOptionIdx} idx = {idx}   key = {option.label} 
+                            
+                            onClick={()=>{this.handleActive(idx)}}
+                            backgroundColor = {option.color}>{option.label}
+                            
+                            </Option>
                         })}
                     </div>
                 </Container>

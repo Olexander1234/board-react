@@ -19,9 +19,10 @@ padding: 10px;
   border: none;
   background-color: ${({backgroundColor}) => backgroundColor};
   transition: transform 250ms linear;
+  border:  ${props=> props.currentIdx === props.idx ? `3px solid black  ` : 'none'};
 
   &:hover{
-    transform: translateY(-50%)
+    transform: scale(1.1)
   }
   `
   

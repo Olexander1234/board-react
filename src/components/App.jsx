@@ -7,7 +7,8 @@ import { Counter } from "./Counter/Counter";
 import { Dropdown } from "./Dropdown/Dropdown";
 import { ColorChange } from "./ColorChanger/ColorChanger";
 import ColorPicker from './ColorPicker/ColorPicker'
-
+import { TodoList } from "./Todo/TodoList";
+import todo from './Todo/todos.json'
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
   { label: 'green', color: '#4CAF50' },
@@ -27,6 +28,7 @@ export const App = () => {
 {/* <Dropdown/> */}
 <ColorChange/>
 <ColorPicker options={colorPickerOptions}/>
+<TodoList todos={todo}/>
     </>
    
   );
