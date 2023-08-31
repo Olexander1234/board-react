@@ -7,6 +7,9 @@ import { ColorChange } from './ColorChanger/ColorChanger';
 import ColorPicker from './ColorPicker/ColorPicker';
 import { TodoList } from './Todo/TodoList';
 import todo from './Todo/todos.json';
+import stickers from './Stickers/stickersData.json'
+
+import { StickersList } from './Stickers/StickersList';
 
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -22,6 +25,7 @@ export class App extends Component {
     good: 0,
     neutral: 0,
     bad: 0,
+    stickerLabel: null,
   };
 
   handlClick = (vote) => {
@@ -46,10 +50,19 @@ export class App extends Component {
     return total === 0 ? 0 : Math.round((good / total) * 100);
   };
 
+
+
+labelHandler = (Label)=>{
+this.setState({
+
+  stickerLabel: Label
+})
+}
+
   render() {
     const countTotal = this.state.good + this.state.neutral + this.state.bad;
     const positivePercentage = this.calculatePositivePercentage();
-
+const {stickerLabel} = this.state
     return (
       <>
         <GlobalStyle />
@@ -66,6 +79,9 @@ export class App extends Component {
           total={countTotal}
           positivePercentage={positivePercentage}
         />
+        {stickerLabel &&   <h1>{stickerLabel}</h1>}
+       
+<StickersList stickers={stickers} onGetLabel={this.labelHandler}/>
       </>
     );
   }
