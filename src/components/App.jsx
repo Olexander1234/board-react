@@ -1,13 +1,16 @@
-import '../index.css';
+
 import { Component } from 'react';
 import  {Form} from './Form/Form'
 // import { FeedbackOptions } from './FeedBack/FeedbackOptions/FeedbackOptions';
-// import { GlobalStyle } from './event/MyEvent.style';
+
 // import { Statistics } from './FeedBack/Statistics/Statistics';
 // import { ColorChange } from './ColorChanger/ColorChanger';
 // import ColorPicker from './ColorPicker/ColorPicker';
-// import { TodoList } from './Todo/TodoList';
-// import todo from './Todo/todos.json';
+import { TodoList } from './Todo/TodoList';
+import todo from './Todo/todos.json';
+import { GlobalStyle } from './GlobalStyle.styled';
+import { TodoEditor } from './TodoEditor/TodoEditor';
+import { nanoid } from 'nanoid';
 // import stickers from './Stickers/stickersData.json'
 
 // import { StickersList } from './Stickers/StickersList';
@@ -27,7 +30,7 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
     stickerLabel: null,
-   formData: null
+  todos: todo,
   };
 
 //   handlClick = (vote) => {
@@ -60,6 +63,22 @@ export class App extends Component {
 //   stickerLabel: Label
 // })
 // }
+addTodo = (text)=>{
+  const newTodo = {
+    id: nanoid(),
+    text,
+    completed: false
+  }
+  
+this.setState((prevState)=>{
+  return {
+    todos: [newTodo, ...prevState.todos]
+  }
+})
+
+}
+
+
 getFormData = (data) =>{
   console.log(data);
   this.setState({formData: data})
@@ -71,12 +90,14 @@ render() {
 // const {stickerLabel} = this.state
     return (
       <>
-        {/* <GlobalStyle />
-        <ColorChange />
-        <ColorPicker options={colorPickerOptions} />
-        <TodoList todos={todo} />
-
-        <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
+      
+        {/* <ColorChange />
+        <ColorPicker options={colorPickerOptions} /> */}
+          <TodoEditor addTodo={this.addTodo}/>
+        <TodoList todos={this.state.todos}  /> 
+        
+   <GlobalStyle/>
+        {/* <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
 
         <Statistics
           good={this.state.good}
@@ -87,7 +108,7 @@ render() {
         />
         {stickerLabel &&   <h1>{stickerLabel}</h1>}
        
-<StickersList stickers={stickers} onGetLabel={this.labelHandler}/> */}
+<StickersList stickers={stickers} onGetLabel={this.labelHandler}/> */} 
 <Form onChange={this.getFormData}/>
 
       </>
