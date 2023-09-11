@@ -1,17 +1,10 @@
 import React, { Component } from 'react';
-import { List, Item , Text, Button, } from './TodoList.style'
-export class TodoList extends Component {
-    // state = {
-    //     todos: this.props.todos
-    // }
+import { List, Item , Text } from './TodoList.style';
 
-    // deleteList = (index) => {
-    //     const newTodos = [...this.state.todos];
-    //     newTodos.splice(index, 1);
-    //     this.setState({
-    //         todos: newTodos
-    //     });
-    // }
+export class TodoList extends Component {
+    state = {
+        todos: this.props.todos
+    }
 
     render() {
         return (
@@ -21,7 +14,6 @@ export class TodoList extends Component {
                     {this.state.todos.map((todo, index) => (
                         <Item key={index}>
                             <Text>{todo.text}</Text>
-                            <Button onClick={() => this.deleteList(index)}>Видалити</Button>
                         </Item>
                     ))}
                 </List>
