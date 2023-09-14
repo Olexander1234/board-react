@@ -4,7 +4,7 @@ export class TodoEditor extends Component {
     state = {
         textValue: '',
         level: 'junior',
-        licence: 'false'
+        licence: false,
     }
 
     handlChange = (e) => {
