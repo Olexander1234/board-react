@@ -67,6 +67,22 @@ deleteTodo = todoId => {
       todos: prevState.todos.filter(todo => todo.id !== todoId),
   }));
 };
+componentDidUpdate( prevProps, prevState ){
+  const {todos} = this.state
+if(prevState.todos !== this.state.todos){
+localStorage.setItem('todos', JSON.stringify(todos) )
+}
+
+}
+componentDidMount(){
+  const todos = localStorage.getItem('todos')
+  const parseTodos = JSON.parse(todos)
+ if(parseTodos){
+  this.setState({
+    todos: parseTodos
+  })
+}
+}//
 render() {
 //     const countTotal = this.state.good + this.state.neutral + this.state.bad;
 //     const positivePercentage = this.calculatePositivePercentage();
