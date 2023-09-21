@@ -8,10 +8,12 @@ import { GlobalStyle } from './GlobalStyle.styled';
 import { TodoEditor } from './TodoEditor/TodoEditor';
 import { nanoid } from 'nanoid';
 import { Filter } from './Filter/Filter';
+import { Modal } from './Modal/Modal';
 
 
 export class App extends Component {
   state={
+    isOpen: false,
     todos: initialTodo,
     filter: '',
   }
@@ -82,7 +84,12 @@ componentDidMount(){
     todos: parseTodos
   })
 }
-}//
+}
+toggleModal = () => {
+  this.setState((prevState) => ({
+    isOpen: !prevState.isOpen
+  }));
+}
 render() {
 //     const countTotal = this.state.good + this.state.neutral + this.state.bad;
 //     const positivePercentage = this.calculatePositivePercentage();
@@ -95,14 +102,19 @@ const totalTodoCount = this.state.todos.length;
       
         {/* <ColorChange />
         <ColorPicker options={colorPickerOptions} /> */}
-          <TodoEditor addTodo={this.addTodo}/>
+          {/* <TodoEditor addTodo={this.addTodo}/>
           <TodoList
           
           todos={ visibleTodos}
           onDeleteTodo={this.deleteTodo}
           onToggleCompleted={this.toggleCompleted}
         />
-        <Filter value={this.props.filter} onChange={this.changeFilter} />
+        
+        <Filter value={this.props.filter} onChange={this.changeFilter} /> */}
+        <button type='button' onClick={this.toggleModal}>Open Modal</button>
+      {this.state.isOpen &&    <Modal onClose={this.toggleModal}/>
+       
+}
    <GlobalStyle/>
         {/* <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
 
@@ -116,7 +128,7 @@ const totalTodoCount = this.state.todos.length;
         {stickerLabel &&   <h1>{stickerLabel}</h1>}
        
 <StickersList stickers={stickers} onGetLabel={this.labelHandler}/> */} 
-<Form onChange={this.getFormData}/>
+{/* <Form onChange={this.getFormData}/> */}
 
       </>
     );
