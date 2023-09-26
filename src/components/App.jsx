@@ -1,7 +1,7 @@
 
 import { Component } from 'react';
 import  {Form} from './Form/Form'
-
+import { createPortal } from 'react-dom';
 import { TodoList } from './Todo/TodoList';
 import initialTodo from './Todo/todos.json';
 import { GlobalStyle } from './GlobalStyle.styled';
@@ -9,7 +9,18 @@ import { TodoEditor } from './TodoEditor/TodoEditor';
 import { nanoid } from 'nanoid';
 import { Filter } from './Filter/Filter';
 import { Modal } from './Modal/Modal';
+import { ColorChange } from './ColorChanger/ColorChanger';
+import ColorPicker from './ColorPicker/ColorPicker';
 
+const modalRoot = document.querySelector('#modal-root')
+const colorPickerOptions = [
+  { label: 'red', color: '#F44336' },
+  { label: 'green', color: '#4CAF50' },
+  { label: 'blue', color: '#2196F3' },
+  { label: 'grey', color: '#607D8B' },
+  { label: 'pink', color: '#E91E63' },
+  { label: 'indigo', color: '#3F51B5' },
+];
 
 export class App extends Component {
   state={
@@ -85,10 +96,15 @@ componentDidMount(){
   })
 }
 }
-toggleModal = () => {
-  this.setState((prevState) => ({
-    isOpen: !prevState.isOpen
-  }));
+closeModal = () => {
+  this.setState({    isOpen: false})
+
+
+}
+openModal = () => {
+  this.setState({isOpen: true})
+
+
 }
 render() {
 //     const countTotal = this.state.good + this.state.neutral + this.state.bad;
@@ -100,8 +116,8 @@ const totalTodoCount = this.state.todos.length;
     return (
       <>
       
-        {/* <ColorChange />
-        <ColorPicker options={colorPickerOptions} /> */}
+         <ColorChange />
+        <ColorPicker options={colorPickerOptions} /> 
           {/* <TodoEditor addTodo={this.addTodo}/>
           <TodoList
           
@@ -111,8 +127,8 @@ const totalTodoCount = this.state.todos.length;
         />
         
         <Filter value={this.props.filter} onChange={this.changeFilter} /> */}
-        <button type='button' onClick={this.toggleModal}>Open Modal</button>
-      {this.state.isOpen &&    <Modal onClose={this.toggleModal}/>
+        <button type='button' onClick={this.openModal}>Open Modal</button>
+      {this.state.isOpen && createPortal(<Modal onClose={this.closeModal}/>, modalRoot)  
        
 }
    <GlobalStyle/>
