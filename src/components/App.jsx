@@ -11,7 +11,8 @@ import { Filter } from './Filter/Filter';
 import { Modal } from './Modal/Modal';
 import { ColorChange } from './ColorChanger/ColorChanger';
 import ColorPicker from './ColorPicker/ColorPicker';
-
+import { PokemonForm } from './Pokemon/PokemonForm';
+import { ToastContainer } from "react-toastify";
 const modalRoot = document.querySelector('#modal-root')
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -27,9 +28,14 @@ export class App extends Component {
     isOpen: false,
     todos: initialTodo,
     filter: '',
+    pokemon: null,
+    loading: false,
+
   }
  
-
+pokemonOnChange = (name)=>{
+this.setState({pokemon: name})
+}
 addTodo = (text)=>{
   const newTodo = {
     id: nanoid(),
@@ -80,32 +86,38 @@ deleteTodo = todoId => {
       todos: prevState.todos.filter(todo => todo.id !== todoId),
   }));
 };
-componentDidUpdate( prevProps, prevState ){
-  const {todos} = this.state
-if(prevState.todos !== this.state.todos){
-localStorage.setItem('todos', JSON.stringify(todos) )
-}
+// componentDidUpdate( prevProps, prevState ){
+//   const {todos} = this.state
+// if(prevState.todos !== this.state.todos){
+// localStorage.setItem('todos', JSON.stringify(todos) )
+// }
 
-}
+
+// componentDidMount(){
+//   const todos = localStorage.getItem('todos')
+//   const parseTodos = JSON.parse(todos)
+//  if(parseTodos){
+//   this.setState({
+//     todos: parseTodos
+//   })
+// }
+// }
+// closeModal = () => {
+//   this.setState({    isOpen: false})
+
+
+// }
+// openModal = () => {
+//   this.setState({isOpen: true})
+
 componentDidMount(){
-  const todos = localStorage.getItem('todos')
-  const parseTodos = JSON.parse(todos)
- if(parseTodos){
-  this.setState({
-    todos: parseTodos
-  })
+  this.setState({loading: true})
+fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+.then(respone=> respone.json())
+.then(pokemon=> this.setState({pokemon}))
+.finally(()=> this.setState({loading: false}) )
 }
-}
-closeModal = () => {
-  this.setState({    isOpen: false})
 
-
-}
-openModal = () => {
-  this.setState({isOpen: true})
-
-
-}
 render() {
 //     const countTotal = this.state.good + this.state.neutral + this.state.bad;
 //     const positivePercentage = this.calculatePositivePercentage();
@@ -114,10 +126,9 @@ const visibleTodos = this.getVisibleTodos();
 const totalTodoCount = this.state.todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
     return (
-      <>
-      
-         <ColorChange />
-        <ColorPicker options={colorPickerOptions} /> 
+    <>
+         {/* <ColorChange />
+        <ColorPicker options={colorPickerOptions} />  */}
           {/* <TodoEditor addTodo={this.addTodo}/>
           <TodoList
           
@@ -127,10 +138,13 @@ const totalTodoCount = this.state.todos.length;
         />
         
         <Filter value={this.props.filter} onChange={this.changeFilter} /> */}
-        <button type='button' onClick={this.openModal}>Open Modal</button>
+        {/* <button type='button' onClick={this.openModal}>Open Modal</button>
       {this.state.isOpen && createPortal(<Modal onClose={this.closeModal}/>, modalRoot)  
        
-}
+} */}
+<p></p>
+<PokemonForm onSubmit={this.pokemonOnChange}/>
+<ToastContainer autoClose={3000} style={{width: '100px'}}/>
    <GlobalStyle/>
         {/* <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
 
@@ -148,5 +162,6 @@ const totalTodoCount = this.state.todos.length;
 
       </>
     );
-  }
+}
+
 }
