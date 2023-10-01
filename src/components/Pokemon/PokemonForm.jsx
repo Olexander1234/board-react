@@ -12,7 +12,7 @@ handleChange = (e)=>{
 handleSubmit = (e)=>{
 e.preventDefault()
 if (this.state.value === '') {
- return toast.error('asfkbv')
+ return toast.error('помилка ')
 }
 this.props.onSubmit(this.state.value)
 }

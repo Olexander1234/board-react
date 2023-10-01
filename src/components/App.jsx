@@ -13,6 +13,8 @@ import { ColorChange } from './ColorChanger/ColorChanger';
 import ColorPicker from './ColorPicker/ColorPicker';
 import { PokemonForm } from './Pokemon/PokemonForm';
 import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+import { PokemonInfo } from './Pokemon/PokemonInfo';
 const modalRoot = document.querySelector('#modal-root')
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -110,13 +112,13 @@ deleteTodo = todoId => {
 // openModal = () => {
 //   this.setState({isOpen: true})
 
-componentDidMount(){
-  this.setState({loading: true})
-fetch('https://pokeapi.co/api/v2/pokemon/ditto')
-.then(respone=> respone.json())
-.then(pokemon=> this.setState({pokemon}))
-.finally(()=> this.setState({loading: false}) )
-}
+// componentDidMount(){
+//   this.setState({loading: true})
+// fetch('https://pokeapi.co/api/v2/pokemon/ditto')
+// .then(respone=> respone.json())
+// .then(pokemon=> this.setState({pokemon}))
+// .finally(()=> this.setState({loading: false}) )
+// }
 
 render() {
 //     const countTotal = this.state.good + this.state.neutral + this.state.bad;
@@ -143,7 +145,9 @@ const totalTodoCount = this.state.todos.length;
        
 } */}
 <p></p>
+
 <PokemonForm onSubmit={this.pokemonOnChange}/>
+<PokemonInfo name={this.state.pokemon}/>
 <ToastContainer autoClose={3000} style={{width: '100px'}}/>
    <GlobalStyle/>
         {/* <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
