@@ -15,6 +15,7 @@ if (this.state.value === '') {
  return toast.error('помилка ')
 }
 this.props.onSubmit(this.state.value)
+this.setState({value: ''})
 }
     render(){
         return(
