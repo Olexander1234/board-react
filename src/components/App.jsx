@@ -15,6 +15,7 @@ import { PokemonForm } from './Pokemon/PokemonForm';
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { PokemonInfo } from './Pokemon/PokemonInfo';
+import { SignupForm } from './singupForm/SingupForm';
 const modalRoot = document.querySelector('#modal-root')
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -149,7 +150,12 @@ const totalTodoCount = this.state.todos.length;
 <PokemonForm onSubmit={this.pokemonOnChange}/>
 <PokemonInfo name={this.state.pokemon}/>
 <ToastContainer autoClose={3000} style={{width: '100px'}}/>
+  
+  <SignupForm/>
+  
    <GlobalStyle/>
+
+
         {/* <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
 
         <Statistics
