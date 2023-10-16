@@ -158,8 +158,8 @@ const totalTodoCount = this.state.todos.length;
   
    <GlobalStyle/>
 
-{/* 
-         <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
+
+         {/* <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
 
         <Statistics
           good={this.state.good}
@@ -167,10 +167,10 @@ const totalTodoCount = this.state.todos.length;
           bad={this.state.bad}
           total={countTotal}
           positivePercentage={positivePercentage}
-        />
-        {stickerLabel &&   <h1>{stickerLabel}</h1>} */}
+        /> */}
+        {/* {stickerLabel &&   <h1>{stickerLabel}</h1>} 
        
-<StickersList stickers={stickers} onGetLabel={this.labelHandler}/> 
+<StickersList stickers={stickers} onGetLabel={this.labelHandler}/>  */}
  {/* <Form onChange={this.getFormData}/>  */}
 
       </>
