@@ -16,6 +16,9 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { PokemonInfo } from './Pokemon/PokemonInfo';
 import { SignupForm } from './singupForm/SingupForm';
+import { Clock } from './Clock/Clock';
+import { StickersList } from './Stickers/StickersList';
+import stickers from './Stickers/stickersData.json'
 const modalRoot = document.querySelector('#modal-root')
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -130,8 +133,8 @@ const totalTodoCount = this.state.todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
     return (
     <>
-         {/* <ColorChange />
-        <ColorPicker options={colorPickerOptions} />  */}
+         {/* <ColorChange /> */}
+        <ColorPicker options={colorPickerOptions} /> 
           {/* <TodoEditor addTodo={this.addTodo}/>
           <TodoList
           
@@ -146,7 +149,7 @@ const totalTodoCount = this.state.todos.length;
        
 } */}
 <p></p>
-
+<Clock/>
 <PokemonForm onSubmit={this.pokemonOnChange}/>
 <PokemonInfo name={this.state.pokemon}/>
 <ToastContainer autoClose={3000} style={{width: '100px'}}/>
@@ -155,8 +158,8 @@ const totalTodoCount = this.state.todos.length;
   
    <GlobalStyle/>
 
-
-        {/* <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
+{/* 
+         <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
 
         <Statistics
           good={this.state.good}
@@ -165,10 +168,10 @@ const totalTodoCount = this.state.todos.length;
           total={countTotal}
           positivePercentage={positivePercentage}
         />
-        {stickerLabel &&   <h1>{stickerLabel}</h1>}
+        {stickerLabel &&   <h1>{stickerLabel}</h1>} */}
        
-<StickersList stickers={stickers} onGetLabel={this.labelHandler}/> */} 
-{/* <Form onChange={this.getFormData}/> */}
+<StickersList stickers={stickers} onGetLabel={this.labelHandler}/> 
+ {/* <Form onChange={this.getFormData}/>  */}
 
       </>
     );

@@ -1,44 +1,51 @@
-import { Component } from "react";
+import { Component, useEffect, useState } from "react";
 import {Dna} from 'react-loader-spinner'
 
-export class PokemonInfo extends Component{
+export const PokemonInfo = ({name})=>{
 
+const [pokemon, setPokemon] = useState('')
 
-state = {
-    pokemon: null,
-    loading: false,
-    error: null, 
-    status: 'idle'
-}
+const [error, setError] = useState('')
 
-
-componentDidUpdate(prevProps){
-  if(prevProps.name !== this.props.name){
-    this.setState({status: 'pending'})
-    fetch(`https://pokeapi.co/api/v2/pokemon/${this.props.name}`)
+const [status, setStatus] = useState('idle')
+// state = {
+//     pokemon: null,
+//     loading: false,
+//     error: null, 
+//     status: 'idle'
+// }
+useEffect(()=>{
+ if(!name){
+  return
+ }
+    setStatus( 'pending')
+    fetch(`https://pokeapi.co/api/v2/pokemon/${name}`)
     .then(response=>{
       if (response.status=== 200) {
         return response.json()
       }
-       return new Promise.reject( new Error(`покемон ${this.props.name} не знайдено`) )
+       return new Promise.reject( new Error(`покемон ${name} не знайдено`) )
     } 
   )
-    .then(pokemon=> this.setState({pokemon, status: 'resovled'}))
-    .catch((error)=> this.setState({error, status: 'rejected'}))
-    .finally(()=> this.setState({loading: false}))
-                                         
+    .then(pokemon=> {
+      setPokemon(pokemon)
+      setStatus('resovled')
+    })
+    .catch((error)=> {
+      setError(error)
+      setStatus('rejected')
+    })
+    
 
-  }
+}, [name])
 
-}
-   
+
 
 
     
-render(){
 
-  const {pokemon, loading, error,status} = this.state
-  switch (status) {
+
+switch (status) {
     case 'idle':
       return<p>Ведіть ім'я покемона</p>
       break;
@@ -81,5 +88,4 @@ render(){
       break;
   }
  
-}
 }

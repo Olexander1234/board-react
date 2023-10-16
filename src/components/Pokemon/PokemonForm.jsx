@@ -1,27 +1,34 @@
 import { Component } from "react";
 import { ImSearch } from 'react-icons/im';
 import { toast } from "react-toastify";
+import { useState } from "react";
+export const PokemonForm=({onSubmit})=>{
+const [value, setValue] = useState('')
 
-export class PokemonForm extends Component{
-    state = {
-        value: ''
-    }
-handleChange = (e)=>{
-    this.setState({value: e.currentTarget.value.toLowerCase()})
+
+
+const handleChange = (e)=>{
+    setValue( e.currentTarget.value.toLowerCase())
 }
-handleSubmit = (e)=>{
+
+
+
+  const handleSubmit = (e)=>{
+
 e.preventDefault()
-if (this.state.value === '') {
+
+if (value === '') {
  return toast.error('помилка ')
 }
-this.props.onSubmit(this.state.value)
-this.setState({value: ''})
+
+onSubmit(value)
+setValue( '')
 }
-    render(){
+ 
         return(
-            <form onSubmit={this.handleSubmit} >
+            <form onSubmit={handleSubmit} >
                 
-                <input type="text" value={this.state.value} onChange={this.handleChange}  />
+                <input type="text" value={value} onChange={handleChange}  />
                 <button type="submit" > 
                 <ImSearch style={{ marginRight: 8 }} />
                 Submit
@@ -29,4 +36,3 @@ this.setState({value: ''})
             </form>
         )
     }
-}
