@@ -1,40 +1,62 @@
-import { Component } from 'react';
+import { Component, useEffect, useRef, useState } from 'react';
 import styles from './Clock.module.css';
 
 
-export class Clock extends Component {
-  state = {
-    time: new Date(),
-  };
+export const Clock = ()=> {
 
-  intervalId = null;
 
-  componentDidMount() {
-    this.intervalId = setInterval(() => {
+const [time, setTime] = useState(()=>new Date())
+const intervalId = useRef(null)
+const inputRef = useRef(null)
+  // state = {
+  //   time: new Date(),
+  // };
+
+
+
+  useEffect(()=>{
+intervalId.current = setInterval(() => {
+     setTime( new Date() );}, 1000)
+return()=>{
+  stop();
+}
+        },[])
+
+
+
+
+
+  // componentDidMount() {
+  //   this.intervalId = setInterval(() => {
      
-      this.setState({ time: new Date() });
-    }, 1000);
-  }
+  //     this.setState({ time: new Date() });
+  //   }, 1000);
+  // }
 
-  componentWillUnmount() {
+  // componentWillUnmount() {
     
-    this.stop();
-  }
+  //   this.stop();
+  // }
 
-  stop = () => {
-    clearInterval(this.intervalId);
+  const stop = () => {
+    clearInterval(intervalId.current);
   };
 
-  render() {
+  
     return (
       <div className={styles.container}>
         <p className={styles.clockface}>
-          Поточний час: {this.state.time.toLocaleTimeString()}
+          Поточний час: {time.toLocaleTimeString()}
         </p>
-        <button type="button" onClick={this.stop}>
+        <form >
+          <input type="text" name='name' ref={inputRef} />
+          <button type='button'>
+            send
+          </button>
+        </form>
+        <button type="button" onClick={stop}>
           Зупитини
         </button>
       </div>
     );
   }
-}

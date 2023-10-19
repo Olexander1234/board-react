@@ -150,6 +150,7 @@ const totalTodoCount = this.state.todos.length;
 } */}
 <p></p>
 <Clock/>
+<Clock/>
 <PokemonForm onSubmit={this.pokemonOnChange}/>
 <PokemonInfo name={this.state.pokemon}/>
 <ToastContainer autoClose={3000} style={{width: '100px'}}/>
