@@ -19,6 +19,9 @@ import { SignupForm } from './singupForm/SingupForm';
 import { Clock } from './Clock/Clock';
 import { StickersList } from './Stickers/StickersList';
 import stickers from './Stickers/stickersData.json'
+import { createContext } from 'react';
+import { ComponentA } from './ComponentA';
+import { Friends } from './friends/Friends';
 const modalRoot = document.querySelector('#modal-root')
 const colorPickerOptions = [
   { label: 'red', color: '#F44336' },
@@ -28,6 +31,7 @@ const colorPickerOptions = [
   { label: 'pink', color: '#E91E63' },
   { label: 'indigo', color: '#3F51B5' },
 ];
+export const Color = createContext(null)
 
 export class App extends Component {
   state={
@@ -38,6 +42,7 @@ export class App extends Component {
     loading: false,
 
   }
+ 
  
 pokemonOnChange = (name)=>{
 this.setState({pokemon: name})
@@ -132,7 +137,11 @@ const visibleTodos = this.getVisibleTodos();
 const totalTodoCount = this.state.todos.length;
     const completedTodoCount = this.calculateCompletedTodos();
     return (
+
     <>
+    <Color.Provider value='red'>
+    <ComponentA/>
+    </Color.Provider>
          {/* <ColorChange /> */}
         <ColorPicker options={colorPickerOptions} /> 
           {/* <TodoEditor addTodo={this.addTodo}/>
@@ -149,6 +158,7 @@ const totalTodoCount = this.state.todos.length;
        
 } */}
 <p></p>
+<Friends/>
 <Clock/>
 <Clock/>
 <PokemonForm onSubmit={this.pokemonOnChange}/>
