@@ -168,7 +168,7 @@ const totalTodoCount = this.state.todos.length;
   <SignupForm/>
   
    <GlobalStyle/>
-
+<Modal/>
 
          {/* <FeedbackOptions options={['good', 'neutral', 'bad']} onLeaveFeedback={this.handlClick} />
 
